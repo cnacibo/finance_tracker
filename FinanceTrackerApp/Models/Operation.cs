@@ -14,4 +14,10 @@ public class Operation{
             throw new ArgumentException("Сумма операции должна быть положительной.");
         }
         Type = type;
-        B
+        BankAccountId = bankAccountId;
+        Amount = amount;
+        Date = date;
+        Description = description;
+        CategoryId = categoryId;
+    }
+}

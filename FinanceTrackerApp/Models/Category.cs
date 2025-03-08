@@ -5,4 +5,9 @@ public class Category{
     public string? Type { get; set; }
     public string? Name { get; set; }
 
-    publi
+    public Category(string type, string name){
+        Type = type;
+        Name = name;
+    }
+
+}
