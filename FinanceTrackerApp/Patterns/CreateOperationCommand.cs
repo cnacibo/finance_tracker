@@ -11,15 +11,4 @@ public class CreateOperationCommand : ICommand{
         _operationFacade = operationFacade;
         _type = type;
         _bankAccountId = bankAccountId;
-        _amount = amount;
-        _description = description;
-        _categoryId = categoryId;
-    }
-
-    public override void Execute() {
-        _operationFacade.CreateOperation(_type, _bankAccountId, _amount, _description, _categoryId);
-    }
-
-    public override string ToString() => "Создана новая операция.";
-
-}
+        _amount = a
