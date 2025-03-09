@@ -12,16 +12,18 @@ public class OperationFacade{
         _financeFactory = financeFactory;
     }
 
-    public void CreateOperation(string type, Guid bankAccountId, double amount, string description, Guid categoryId){
+    public void CreateOperation(bool type, Guid bankAccountId, double amount, string description, Guid categoryId){
         Operation operation = _financeFactory.CreateOperation(type, bankAccountId, amount,  DateTime.Now, description, categoryId);
         _operations.Add(operation);
 
-        _bankAccountFacade.UpdateAccountBalance(bankAccountId, type == "доход" ? amount : -amount);
+        _bankAccountFacade.UpdateAccountBalance(bankAccountId, type ? amount : -amount);
     }
 
      public List<Operation> GetOperations()
     {
         return _operations;
     }
+
+
 
 }

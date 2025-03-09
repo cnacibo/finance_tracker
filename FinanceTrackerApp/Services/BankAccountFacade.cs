@@ -21,4 +21,9 @@ public class BankAccountFacade{
         BankAccount bankAccount = GetAccount(accountId);
         bankAccount.UpdateBalance(amount);
     }
+    public List<BankAccount> GetAccounts(){
+            return _accounts;
+        }
+
+    
 }

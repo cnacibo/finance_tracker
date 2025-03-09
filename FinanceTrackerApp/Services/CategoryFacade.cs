@@ -17,4 +17,11 @@ public class CategoryFacade{
         return _categories.FirstOrDefault(c => c.Id == categoryId);
     }
 
+    
+    public List<Category> GetCategories()
+        {
+            return _categories;
+        }
+
+
 }

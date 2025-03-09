@@ -1,0 +1,3 @@
+Id,Type,BankAccountId,Amount,Date,Description,CategoryId
+fc8835bc-daa1-4ab2-bc0d-f40bf1d60663,Продукты,расход
+dc727bad-1868-4f78-bffa-a3ad799e4f35,Основной счет,1000
