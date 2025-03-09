@@ -7,21 +7,25 @@ public class CategoryFacade{
         _financeFactory = financeFactory;
     }
 
-    public void CreateCategory(string type, string name){
+    public Category CreateCategory(bool type, string name){
         Category category = _financeFactory.CreateCategory(type, name);
         _categories.Add(category);
+        return category;
     }
 
-    public Category Category(Guid categoryId)
+    public Category GetCategory(Guid categoryId)
     {
         return _categories.FirstOrDefault(c => c.Id == categoryId);
     }
-
     
     public List<Category> GetCategories()
-        {
-            return _categories;
-        }
+    {
+        return _categories;
+    }
 
-
+    public void ChangeCategory(Guid categoryId, string name)
+    {
+        Category category = GetCategory(categoryId);
+        category.ChangeName(name);
+    }
 }

@@ -11,7 +11,18 @@ public class BankAccount{
         Balance = balance;
     }
 
-    public void UpdateBalance(double amount){
+    public void AddBalance(double amount){
         Balance += amount;
+    }
+
+    public void Withdraw(double amount)
+    {
+        if (Balance >= amount)
+        {
+            Balance -= amount;
+        } else 
+        {
+            throw new InvalidOperationException("Недостаточно средств на счете.");
+        }
     }
 }

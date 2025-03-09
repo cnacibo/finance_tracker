@@ -5,7 +5,11 @@ using System.Globalization;
 using System.IO;
 
 public class CsvExportVisitor : IExportVisitor{
-    public void Visit(List<BankAccount> accounts, List<Category> categories, List<Operation> operations){
+    public void Visit(BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
+        List<BankAccount> accounts = accountFacade.GetAccounts();
+        List<Category> categories = categoryFacade.GetCategories();
+        List<Operation> operations = operationFacade.GetOperations();
+
         using (var writer = new StreamWriter("export.csv"))
         using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
         {

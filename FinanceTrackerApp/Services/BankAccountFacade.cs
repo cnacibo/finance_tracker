@@ -7,9 +7,10 @@ public class BankAccountFacade{
         _financeFactory = financeFactory;
     }
 
-    public void CreateBankAccount(string name, double balance){
+    public BankAccount CreateBankAccount(string name, double balance){
         BankAccount bankAccount = _financeFactory.CreateBankAccount(name, balance);
         _accounts.Add(bankAccount);
+        return bankAccount;
     }
 
     public BankAccount GetAccount(Guid accountId)
@@ -17,13 +18,25 @@ public class BankAccountFacade{
         return _accounts.FirstOrDefault(a => a.Id == accountId);
     }
 
-    public void UpdateAccountBalance(Guid accountId, double amount){
-        BankAccount bankAccount = GetAccount(accountId);
-        bankAccount.UpdateBalance(amount);
-    }
-    public List<BankAccount> GetAccounts(){
+    
+    public List<BankAccount> GetAccounts()
+    {
             return _accounts;
-        }
+    }
 
+    public void UpdateAccountBalance(Guid bankAccountId, bool type, double amount)
+    {
+        try{
+            BankAccount bankAccount = GetAccount(bankAccountId);
+            if (type){
+                bankAccount.AddBalance(amount);
+            } else{
+                bankAccount.Withdraw(amount);
+            }
+            Console.WriteLine("operation is successful");
+        } catch (Exception e) {
+            Console.WriteLine("operation failed: " + e.Message);
+        }
+    }
     
 }

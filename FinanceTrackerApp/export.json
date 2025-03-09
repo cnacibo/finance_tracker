@@ -1,17 +1,64 @@
 {
   "accounts": [
     {
-      "Id": "dc727bad-1868-4f78-bffa-a3ad799e4f35",
-      "Name": "Основной счет",
-      "Balance": 1000.0
+      "Id": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "Name": "Дополнительный счет",
+      "Balance": 7900.0
     }
   ],
   "categories": [
     {
-      "Id": "fc8835bc-daa1-4ab2-bc0d-f40bf1d60663",
-      "Type": "Продукты",
-      "Name": "расход"
+      "Id": "654938ef-8a6d-4abf-9ed1-714c6d94b462",
+      "Type": false,
+      "Name": "Продукты"
+    },
+    {
+      "Id": "40253857-00bf-48d1-955d-742e7121fc6a",
+      "Type": true,
+      "Name": "Работа"
+    },
+    {
+      "Id": "e094dfb8-cc70-40fe-9176-938c016b5a36",
+      "Type": false,
+      "Name": "Дорогие покупки"
     }
   ],
-  "operations": []
+  "operations": [
+    {
+      "Id": "45940627-3f1a-4ede-b5cd-4c452003779b",
+      "Type": true,
+      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "Amount": 10000.0,
+      "Date": "2025-03-09T18:49:07.515518+03:00",
+      "Description": "Зарплата",
+      "CategoryId": "40253857-00bf-48d1-955d-742e7121fc6a"
+    },
+    {
+      "Id": "7651c245-1aba-4f69-8567-1f027d031547",
+      "Type": false,
+      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "Amount": 150.0,
+      "Date": "2025-03-09T18:49:07.530686+03:00",
+      "Description": "Покупка еды",
+      "CategoryId": "654938ef-8a6d-4abf-9ed1-714c6d94b462"
+    },
+    {
+      "Id": "a90e40e4-226a-408e-8ffb-578ec26582e4",
+      "Type": false,
+      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "Amount": 2000.0,
+      "Date": "2025-03-09T18:49:07.530766+03:00",
+      "Description": "Покупка телефона",
+      "CategoryId": "e094dfb8-cc70-40fe-9176-938c016b5a36"
+    },
+    {
+      "Id": "e344940c-150c-4a04-af97-a5124eded4f3",
+      "Type": false,
+      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "Amount": 15000.0,
+      "Date": "2025-03-09T18:49:07.530768+03:00",
+      "Description": "Покупка телефизора",
+      "CategoryId": "e094dfb8-cc70-40fe-9176-938c016b5a36"
+    }
+  ]
 }

@@ -2,10 +2,10 @@ namespace FinanceTrackerApp;
 
 public class CreateCategoryCommand : ICommand{
     private readonly CategoryFacade _categoryFacade;
-    private readonly string _type;
+    private readonly bool _type;
     private readonly string _name;
 
-    public CreateCategoryCommand(CategoryFacade categoryFacade, string type, string name){
+    public CreateCategoryCommand(CategoryFacade categoryFacade, bool type, string name){
         _categoryFacade = categoryFacade;
         _type = type;
         _name = name;
