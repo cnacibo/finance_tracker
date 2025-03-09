@@ -17,7 +17,7 @@ public class CsvExportVisitor : IExportVisitor{
             ShouldQuote = (field) => true 
         };
 
-        using (var writer = new StreamWriter("export.csv"))
+        using (var writer = new StreamWriter("export_operations.csv"))
         using (var csv = new CsvWriter(writer, config))
         {
             // Запись операций
@@ -42,21 +42,11 @@ public class CsvExportVisitor : IExportVisitor{
                 csv.NextRecord();
             }
 
-            // Запись категорий
-            csv.WriteField("Category Id");
-            csv.WriteField("Type");
-            csv.WriteField("Name");
-            csv.NextRecord();
-
-            foreach (var category in categories)
-            {
-                csv.WriteField(category.Id);
-                csv.WriteField(category.Type ? "Income" : "Expense");
-                csv.WriteField(category.Name);
-                csv.NextRecord();
-            }
-
-            // Запись банковских счетов
+            
+        }
+        using (var writer = new StreamWriter("export_accounts.csv"))
+        using (var csv = new CsvWriter(writer, config))
+        {
             csv.WriteField("Account Id");
             csv.WriteField("Name");
             csv.WriteField("Balance");
@@ -69,7 +59,24 @@ public class CsvExportVisitor : IExportVisitor{
                 csv.WriteField(account.Balance.ToString("F2")); // Форматируем баланс
                 csv.NextRecord();
             }
+
+            
         }
-    }
-    
+        using (var writer = new StreamWriter("export_categories.csv"))
+        using (var csv = new CsvWriter(writer, config))
+        {
+            csv.WriteField("Category Id");
+            csv.WriteField("Type");
+            csv.WriteField("Name");
+            csv.NextRecord();
+
+            foreach (var category in categories)
+            {
+                csv.WriteField(category.Id);
+                csv.WriteField(category.Type ? "Income" : "Expense");
+                csv.WriteField(category.Name);
+                csv.NextRecord();
+            }       
+        }
+    }  
 }
