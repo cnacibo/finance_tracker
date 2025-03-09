@@ -1,64 +1,64 @@
 {
   "accounts": [
     {
-      "Id": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "Id": "2471851d-117b-46b3-8bad-32e551d60995",
       "Name": "Дополнительный счет",
       "Balance": 7900.0
     }
   ],
   "categories": [
     {
-      "Id": "654938ef-8a6d-4abf-9ed1-714c6d94b462",
+      "Id": "933bddb1-36ba-4a97-950e-78efd9ba4dfa",
       "Type": false,
       "Name": "Продукты"
     },
     {
-      "Id": "40253857-00bf-48d1-955d-742e7121fc6a",
+      "Id": "f63581e0-fdc9-415e-b540-627eb96f4cdf",
       "Type": true,
       "Name": "Работа"
     },
     {
-      "Id": "e094dfb8-cc70-40fe-9176-938c016b5a36",
+      "Id": "7af5072d-3ba1-4a5f-beec-7cb398550fc3",
       "Type": false,
       "Name": "Дорогие покупки"
     }
   ],
   "operations": [
     {
-      "Id": "45940627-3f1a-4ede-b5cd-4c452003779b",
+      "Id": "b8211366-8e56-491a-91bd-b9ebfe00e5bf",
       "Type": true,
-      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "BankAccountId": "2471851d-117b-46b3-8bad-32e551d60995",
       "Amount": 10000.0,
-      "Date": "2025-03-09T18:49:07.515518+03:00",
+      "Date": "2025-03-09T19:11:23.031709+03:00",
       "Description": "Зарплата",
-      "CategoryId": "40253857-00bf-48d1-955d-742e7121fc6a"
+      "CategoryId": "f63581e0-fdc9-415e-b540-627eb96f4cdf"
     },
     {
-      "Id": "7651c245-1aba-4f69-8567-1f027d031547",
+      "Id": "535497c7-fd4a-4943-82b0-27b55477a37a",
       "Type": false,
-      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "BankAccountId": "2471851d-117b-46b3-8bad-32e551d60995",
       "Amount": 150.0,
-      "Date": "2025-03-09T18:49:07.530686+03:00",
+      "Date": "2025-03-09T19:11:23.049869+03:00",
       "Description": "Покупка еды",
-      "CategoryId": "654938ef-8a6d-4abf-9ed1-714c6d94b462"
+      "CategoryId": "933bddb1-36ba-4a97-950e-78efd9ba4dfa"
     },
     {
-      "Id": "a90e40e4-226a-408e-8ffb-578ec26582e4",
+      "Id": "326f86b3-1d35-4635-ad7c-ec397c9ebcc3",
       "Type": false,
-      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "BankAccountId": "2471851d-117b-46b3-8bad-32e551d60995",
       "Amount": 2000.0,
-      "Date": "2025-03-09T18:49:07.530766+03:00",
+      "Date": "2025-03-09T19:11:23.049936+03:00",
       "Description": "Покупка телефона",
-      "CategoryId": "e094dfb8-cc70-40fe-9176-938c016b5a36"
+      "CategoryId": "7af5072d-3ba1-4a5f-beec-7cb398550fc3"
     },
     {
-      "Id": "e344940c-150c-4a04-af97-a5124eded4f3",
+      "Id": "2306b592-01e7-40e8-833f-ca75c87dd475",
       "Type": false,
-      "BankAccountId": "541c8017-ac99-422a-a15b-4b76adf7a252",
+      "BankAccountId": "2471851d-117b-46b3-8bad-32e551d60995",
       "Amount": 15000.0,
-      "Date": "2025-03-09T18:49:07.530768+03:00",
+      "Date": "2025-03-09T19:11:23.049939+03:00",
       "Description": "Покупка телефизора",
-      "CategoryId": "e094dfb8-cc70-40fe-9176-938c016b5a36"
+      "CategoryId": "7af5072d-3ba1-4a5f-beec-7cb398550fc3"
     }
   ]
 }
