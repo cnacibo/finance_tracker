@@ -1,12 +1,14 @@
+using System;
 namespace FinanceTrackerApp;
 
 public class BankAccount{
-    public Guid Id { get; } = Guid.NewGuid();
-    public string Name { get; set;}
+    public Guid Id { get; }
+    public string Name { get; private set;}
 
     public double Balance { get; private set;}
 
-    public BankAccount(string name, double balance){
+    public BankAccount(Guid id, string name, double balance){
+        Id = id;
         Name = name;
         Balance = balance;
     }
@@ -24,5 +26,9 @@ public class BankAccount{
         {
             throw new InvalidOperationException("Недостаточно средств на счете.");
         }
+    }
+
+    public void ChangeName(string newName){
+        Name = newName;
     }
 }

@@ -2,8 +2,8 @@ namespace FinanceTrackerApp;
 
 public class CategoryGroupingStrategy : IAnalyticsStrategy{
     private List<Category> _categories;
-    public CategoryGroupingStrategy(List<Category> categories){
-        _categories = categories;
+    public CategoryGroupingStrategy(CategoryFacade categoryFacade){
+        _categories = categoryFacade.GetCategories();
     }
 
     public object Analyze(List<Operation> operations){

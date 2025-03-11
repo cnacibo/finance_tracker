@@ -1,0 +1,39 @@
+accounts:
+- id: 1b3d5f67-a8c2-4c3b-9e4a-731c6b6d8df1
+  name: Основной счет
+  balance: 25000
+- id: 3c5a6e98-4f1d-4372-94b3-6b29d14f8c5d
+  name: Сбережения
+  balance: 100000
+categories:
+- id: d182beef-3d2a-4c97-b765-1e5db9c37904
+  type: false
+  name: Развлечения
+- id: b725f6e5-f1db-4e90-bf2c-2f9a64db9b3c
+  type: true
+  name: Инвестиции
+- id: e1d4f89b-8bde-4c72-82e7-267a6b8e732a
+  type: false
+  name: Коммунальные платежи
+operations:
+- id: 7a29f1ad-528b-4b96-8c71-6d57b9c882db
+  type: false
+  bankAccountId: 1b3d5f67-a8c2-4c3b-9e4a-731c6b6d8df1
+  amount: 500
+  date: 2025-03-11T14:00:00.0000000+03:00
+  description: Поход в кино
+  categoryId: d182beef-3d2a-4c97-b765-1e5db9c37904
+- id: f41649b2-1d23-4c82-b8f1-9de1f69b93c2
+  type: true
+  bankAccountId: 3c5a6e98-4f1d-4372-94b3-6b29d14f8c5d
+  amount: 15000
+  date: 2025-03-11T15:10:30.0000000+03:00
+  description: Доход от инвестиций
+  categoryId: b725f6e5-f1db-4e90-bf2c-2f9a64db9b3c
+- id: 8f943a5c-dc4d-49f4-8f1b-b1e72573b79a
+  type: false
+  bankAccountId: 1b3d5f67-a8c2-4c3b-9e4a-731c6b6d8df1
+  amount: 3000
+  date: 2025-03-11T16:45:00.0000000+03:00
+  description: Оплата коммунальных услуг
+  categoryId: e1d4f89b-8bde-4c72-82e7-267a6b8e732a

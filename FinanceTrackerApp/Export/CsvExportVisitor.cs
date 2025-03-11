@@ -1,3 +1,4 @@
+using System;
 namespace FinanceTrackerApp;
 
 using CsvHelper;
@@ -6,7 +7,7 @@ using System.IO;
 using CsvHelper.Configuration;
 
 public class CsvExportVisitor : IExportVisitor{
-    public void Visit(BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
+    public void Visit(string fileName, BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
         List<BankAccount> accounts = accountFacade.GetAccounts();
         List<Category> categories = categoryFacade.GetCategories();
         List<Operation> operations = operationFacade.GetOperations();
@@ -21,19 +22,19 @@ public class CsvExportVisitor : IExportVisitor{
         using (var csv = new CsvWriter(writer, config))
         {
             // Запись операций
-            csv.WriteField("Operation Id");
+            csv.WriteField("Id");
             csv.WriteField("Type");
-            csv.WriteField("Bank Account Id");
+            csv.WriteField("BankAccountId");
             csv.WriteField("Amount");
             csv.WriteField("Date");
             csv.WriteField("Description");
-            csv.WriteField("Category Id");
+            csv.WriteField("CategoryId");
             csv.NextRecord();
 
             foreach (var operation in operations)
             {
                 csv.WriteField(operation.Id);
-                csv.WriteField(operation.Type ? "Credit" : "Debit"); // Переводим булевое значение в текст
+                csv.WriteField(operation.Type); // Переводим булевое значение в текст
                 csv.WriteField(operation.BankAccountId);
                 csv.WriteField(operation.Amount.ToString("F2")); // Форматируем сумму
                 csv.WriteField(operation.Date.ToString("yyyy-MM-dd HH:mm:ss")); // Форматируем дату
@@ -47,7 +48,7 @@ public class CsvExportVisitor : IExportVisitor{
         using (var writer = new StreamWriter("export_accounts.csv"))
         using (var csv = new CsvWriter(writer, config))
         {
-            csv.WriteField("Account Id");
+            csv.WriteField("Id");
             csv.WriteField("Name");
             csv.WriteField("Balance");
             csv.NextRecord();
@@ -65,7 +66,7 @@ public class CsvExportVisitor : IExportVisitor{
         using (var writer = new StreamWriter("export_categories.csv"))
         using (var csv = new CsvWriter(writer, config))
         {
-            csv.WriteField("Category Id");
+            csv.WriteField("Id");
             csv.WriteField("Type");
             csv.WriteField("Name");
             csv.NextRecord();

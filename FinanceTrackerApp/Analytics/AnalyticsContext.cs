@@ -7,7 +7,8 @@ public class AnalyticsContext{
         _strategy = strategy;
     }
 
-    public object ExecuteStrategy(List<Operation> operations){
+    public object ExecuteStrategy(OperationFacade operationFacade){
+        List<Operation> operations = operationFacade.GetOperations();
         return _strategy?.Analyze(operations);
     }
 }
