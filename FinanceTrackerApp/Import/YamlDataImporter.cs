@@ -27,13 +27,12 @@ public class YamlDataImporter : DataImporter
                     acc["name"].ToString(),
                     double.Parse(acc["balance"].ToString())  // Преобразуем строку в double
                 );
-                Console.WriteLine("Аккаунт успешно добавлен");
             } catch (Exception e){
                 Console.WriteLine("Не удалось добавить аккаунт: " + e.Message);
             }
         }
 
-            // Импорт категорий
+        // Импорт категорий
         foreach (var cat in categories)
         {
             try{
@@ -42,13 +41,12 @@ public class YamlDataImporter : DataImporter
                     bool.Parse(cat["type"].ToString()),  // Преобразуем строку в bool
                     cat["name"].ToString()
                 );
-                Console.WriteLine("Категория успешно добавлена");
             } catch (Exception e) {
                 Console.WriteLine("Не удалось добавить категорию: " + e.Message);
             }
         }
 
-            // Импорт операций
+        // Импорт операций
         foreach (var op in operations)
         {
             try{
@@ -61,7 +59,6 @@ public class YamlDataImporter : DataImporter
                     op["description"].ToString(),
                     Guid.Parse(op["categoryId"].ToString())  // Преобразуем строки в Guid
                 );
-                Console.WriteLine("Операция успешно добавлена");
             } catch (Exception e){
                 Console.WriteLine("Не удалось добавить операцию: " + e.Message);
             }

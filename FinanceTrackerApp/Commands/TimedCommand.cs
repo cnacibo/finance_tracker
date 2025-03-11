@@ -13,7 +13,7 @@ public class TimedCommand : ICommand{
        Stopwatch stopwatch = Stopwatch.StartNew();
         _command.Execute();
         stopwatch.Stop();
-        Console.WriteLine($"Время выполнения: {stopwatch.ElapsedMilliseconds} мс");
+        Console.WriteLine($"\nВремя выполнения: {stopwatch.ElapsedMilliseconds} мс");
     }
 
 }

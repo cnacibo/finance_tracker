@@ -13,127 +13,70 @@ var serviceProvider = new ServiceCollection()
             .AddSingleton<BankAccountFacade>()
             .AddSingleton<CategoryFacade>()
             .AddSingleton<OperationFacade>()
-            // .AddSingleton<FinanceFacade>()
             .BuildServiceProvider();
 
-var bankAccountFacade = serviceProvider.GetService<BankAccountFacade>();
-var categoryFacade = serviceProvider.GetService<CategoryFacade>();
-var operationFacade = serviceProvider.GetService<OperationFacade>();
-// var finance = serviceProvider.GetService<FinanceFacade>();
+var bankAccountFacade = serviceProvider.GetRequiredService<BankAccountFacade>();
+var categoryFacade = serviceProvider.GetRequiredService<CategoryFacade>();
+var operationFacade = serviceProvider.GetRequiredService<OperationFacade>();
 
 // Создание счета
 BankAccount bankAccount = bankAccountFacade.CreateBankAccount("Дополнительный счет", 50);
-// ICommand createAccountCommand = new CreateAccountCommand(bankAccountFacade, "Основной счет", 1000);
-// ICommand timedCreateAccountCommand = new TimedCommand(createAccountCommand);
-// timedCreateAccountCommand.Execute();
-
 
 // Создание категории
 Category category = categoryFacade.CreateCategory(false, "Продукты");
 Category category2 = categoryFacade.CreateCategory(true, "Работа");
 Category category3 = categoryFacade.CreateCategory(false, "Дорогие покупки");
-// ICommand createCategoryCommand = new CreateCategoryCommand(categoryFacade, false, "Продукты");
-// ICommand timedCreateCategoryCommand = new TimedCommand(createCategoryCommand);
-// timedCreateCategoryCommand.Execute();
 
+// Создание операций
+Operation? operation = operationFacade.CreateOperation(true, bankAccount.Id, 10000, "Зарплата", category2.Id);
+Operation? operation2 = operationFacade.CreateOperation(false, bankAccount.Id, 150, "Покупка еды", category.Id);
+Operation? operation3 = operationFacade.CreateOperation(false, bankAccount.Id, 2000, "Покупка телефона", category3.Id);
+Operation? operation4 = operationFacade.CreateOperation(false, bankAccount.Id, 15000, "Покупка телефизора", category3.Id);
 
-if (bankAccount != null && category!= null){
-    // ICommand createOperationCommand = new CreateOperationCommand(operationFacade, false, account.Id, 150, "Покупка еды", Guid.NewGuid());
-    // ICommand timedCreateOperationCommand = new TimedCommand(createOperationCommand);
-    // timedCreateOperationCommand.Execute();
-    Operation operation = operationFacade.CreateOperation(true, bankAccount.Id, 10000, "Зарплата", category2.Id);
-    Operation operation2 = operationFacade.CreateOperation(false, bankAccount.Id, 150, "Покупка еды", category.Id);
-    Operation operation3 = operationFacade.CreateOperation(false, bankAccount.Id, 2000, "Покупка телефона", category3.Id);
-    Operation operation4 = operationFacade.CreateOperation(false, bankAccount.Id, 15000, "Покупка телефизора", category3.Id);
-} else{
-    Console.WriteLine("Account or Category is null");
-}
+// Вывод общей информации 
+ICommand viewAllDataCommand = new ViewAllDataCommand(bankAccountFacade, categoryFacade, operationFacade);
+ICommand timedCreateCategoryCommand = new TimedCommand(viewAllDataCommand);
+timedCreateCategoryCommand.Execute(); // Замер времени выполнения команды
 
-Console.WriteLine("\n=== банковские счета ===");
-foreach(var account in bankAccountFacade.GetAccounts()){
-    Console.WriteLine($"ID: {account.Id}, Название: {account.Name}, Баланс: {account.Balance:F2}");
-}
+// Аналитика 
+ICommand categoryAnalysisCommand = new CategoryAnalysisCommand(categoryFacade, operationFacade);
+categoryAnalysisCommand.Execute();
 
-Console.WriteLine("\n=== категории ===");
-foreach (var categoryy in categoryFacade.GetCategories())
-{
-    Console.WriteLine($"ID: {categoryy.Id}, Тип: {(categoryy.Type ? "Доход" : "Расход")}, Название: {categoryy.Name}");
-}
+DateTime start = new DateTime(2025, 03, 01, 00, 00, 00); // 1 марта 2025 00:00:00
+DateTime end = new DateTime(2025, 03, 31, 23, 59, 59); // 31 марта 2025 23:59:59
 
+ICommand incomeExpenseAnalysisCommand = new IncomeExpenseAnalysisCommand(operationFacade, start, end);
+incomeExpenseAnalysisCommand.Execute();
 
-Console.WriteLine("\n=== операции ===");
-foreach (var operation in operationFacade.GetOperations())
-{
-    Console.WriteLine($"ID: {operation.Id}, Тип: {(operation.Type ? "Пополнение" : "Списание")}, " +
-                      $"Счёт: {operation.BankAccountId}, Сумма: {operation.Amount:F2}, " +
-                      $"Дата: {operation.Date:yyyy-MM-dd HH:mm:ss}, Описание: {operation.Description}, Категория: {operation.CategoryId}");
-}
+// Импорт из csv
+CsvDataImporter csvDataImporter = new CsvDataImporter();
+ICommand importDataCommandCsv = new ImportDataCommand("export_accounts.csv", csvDataImporter, bankAccountFacade, categoryFacade, operationFacade);
+importDataCommandCsv.Execute();
 
-var strategy = new CategoryGroupingStrategy(categoryFacade);
-var context = new AnalyticsContext(strategy);
-var analysisResult = context.ExecuteStrategy(operationFacade);
+ICommand importDataCommandCsv1 = new ImportDataCommand("export_categories.csv", csvDataImporter, bankAccountFacade, categoryFacade, operationFacade);
+importDataCommandCsv1.Execute();
 
-Console.WriteLine("Аналитика по категориям:");
-foreach (var result in (Dictionary<string, double>)analysisResult)
-{
-    Console.WriteLine($"{result.Key}: {result.Value}");
-}
+ICommand importDataCommandCsv2 = new ImportDataCommand("export_operations.csv", csvDataImporter, bankAccountFacade, categoryFacade, operationFacade);
+importDataCommandCsv2.Execute();
 
+// Импорт из yaml
+YamlDataImporter yamlImporter = new YamlDataImporter();
+ICommand importDataCommand = new ImportDataCommand("export.yaml", yamlImporter, bankAccountFacade, categoryFacade, operationFacade);
+ICommand timedImportDataCommand = new TimedCommand(importDataCommand);
+timedImportDataCommand.Execute();
 
-DateTime start = new DateTime(2025, 03, 01, 00, 00, 00); // 1 марта 2025, начало дня
-DateTime end = new DateTime(2025, 03, 31, 23, 59, 59);   // 31 марта 2025, конец дня
+// Вывод всех операций
+ICommand viewAllOperationsCommand = new ViewAllOperationsCommand(operationFacade, bankAccountFacade, categoryFacade);
+viewAllOperationsCommand.Execute();
 
-var strategy1 = new IncomeExpenseDifferenceStrategy(start, end);
-var context1 = new AnalyticsContext(strategy1);
-var analysisResult1 = context1.ExecuteStrategy(operationFacade);
+// Экспорт в json
+ICommand exportDataCommandJson = new ExportDataCommand("json", bankAccountFacade, categoryFacade, operationFacade);
+ICommand timedExportDataCommandJson = new TimedCommand(exportDataCommandJson);
+timedExportDataCommandJson.Execute();
 
-Console.WriteLine("\nПодсчет разницы доходов и расходов: " + analysisResult1.ToString());
-
-// YamlExportVisitor yamlExportVisitor= new YamlExportVisitor();
-// yamlExportVisitor.Visit("export.yaml", bankAccountFacade, categoryFacade, operationFacade);
-// Console.WriteLine("Экспорт выполнен в Yaml.");
-
-// YamlDataImporter yamlImporter = new YamlDataImporter();
-// yamlImporter.ImportData("export.yaml", bankAccountFacade, categoryFacade, operationFacade);
-
-// CsvDataImporter csvImporter = new CsvDataImporter();
-// csvImporter.ImportData("export_accounts.csv", bankAccountFacade, categoryFacade, operationFacade);
-// csvImporter.ImportData("export_categories.csv", bankAccountFacade, categoryFacade, operationFacade);
-// csvImporter.ImportData("export_operations.csv", bankAccountFacade, categoryFacade, operationFacade);
-
-// JsonDataImporter jsonImporter = new JsonDataImporter();
-
-// jsonImporter.ImportData("export.json", bankAccountFacade, categoryFacade, operationFacade);
-
-// Console.WriteLine("=== Импортированные банковские счета ===");
-// foreach(var account in bankAccountFacade.GetAccounts()){
-//     Console.WriteLine($"ID: {account.Id}, Название: {account.Name}, Баланс: {account.Balance:F2}");
-// }
-
-// Console.WriteLine("\n=== Импортированные категории ===");
-// foreach (var categoryy in categoryFacade.GetCategories())
-// {
-//     Console.WriteLine($"ID: {categoryy.Id}, Тип: {(categoryy.Type ? "Доход" : "Расход")}, Название: {categoryy.Name}");
-// }
-
-// Console.WriteLine("\n=== Импортированные операции ===");
-// foreach (var operation in operationFacade.GetOperations())
-// {
-//     Console.WriteLine($"ID: {operation.Id}, Тип: {(operation.Type ? "Пополнение" : "Списание")}, " +
-//                       $"Счёт: {operation.BankAccountId}, Сумма: {operation.Amount:F2}, " +
-//                       $"Дата: {operation.Date:yyyy-MM-dd HH:mm:ss}, Описание: {operation.Description}, Категория: {operation.CategoryId}");
-// }
-
-// var exportVisitor = new JsonExportVisitor(); 
-// exportVisitor.Visit(bankAccountFacade, categoryFacade, operationFacade);
-// Console.WriteLine("Экспорт выполнен в JSON.");
-
-// var exportVisitor2 = new CsvExportVisitor();
-// exportVisitor2.Visit("export.csv", bankAccountFacade, categoryFacade, operationFacade);
-// Console.WriteLine("\nЭкспорт выполнен в CSV.");
-
-// csvImporter.ImportData("export_accounts.csv", bankAccountFacade, categoryFacade, operationFacade);
-// csvImporter.ImportData("export_categories.csv", bankAccountFacade, categoryFacade, operationFacade);
-// csvImporter.ImportData("export_operations.csv", bankAccountFacade, categoryFacade, operationFacade);
+// Экспорт в csv
+ICommand exportDataCommandCsv = new ExportDataCommand("csv", bankAccountFacade, categoryFacade, operationFacade);
+ICommand timedExportDataCommandCsv = new TimedCommand(exportDataCommandCsv);
+timedExportDataCommandCsv.Execute();
 
  

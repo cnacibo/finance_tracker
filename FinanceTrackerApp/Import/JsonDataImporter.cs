@@ -18,30 +18,27 @@ public class JsonDataImporter : DataImporter{
         {
             try{
                 accountFacade.AddBankAccount(account.Id, account.Name, account.Balance);
-                Console.WriteLine("Аккаунт успешно добавлен");
             } catch (Exception e){
                 Console.WriteLine("Не удалось добавить аккаунт: " + e.Message);
             }    
         }
 
-            // Добавляем категории через фасад
+        // Добавляем категории через фасад
         foreach (var category in categories)
         {
             try{
                 categoryFacade.AddCategory(category.Id, category.Type, category.Name);
-                Console.WriteLine("Категория успешно добавлена");
             } catch (Exception e) {
                 Console.WriteLine("Не удалось добавить категорию: " + e.Message);
             }
             
         }
 
-            // Добавляем операции через фасад
+        // Добавляем операции через фасад
         foreach (var operation in operations)
         {
             try{
                 operationFacade.AddOperation(operation.Id, operation.Type, operation.BankAccountId, operation.Amount, operation.Date, operation.Description, operation.CategoryId);
-                Console.WriteLine("Операция успешно добавлена");
             } catch (Exception e){
                 Console.WriteLine("Не удалось добавить операцию: " + e.Message);
             }

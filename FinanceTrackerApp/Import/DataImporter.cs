@@ -9,6 +9,9 @@ public abstract class DataImporter{
         try{
             string rawData = File.ReadAllText(filePath, Encoding.UTF8);
             ParseData(rawData, accountFacade, categoryFacade, operationFacade);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Файл {filePath} успешно прочитан!");
+            Console.ResetColor();
         } catch(Exception ex){
             Console.WriteLine("Ошибка чтения файла: "+ ex.Message);
         }

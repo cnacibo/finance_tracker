@@ -15,26 +15,21 @@ public class CsvDataImporter : DataImporter{
             MissingFieldFound = null,
             HeaderValidated = null
         })){
-            Console.WriteLine("Читаем CSV...");
             bool firstRow = true;
             while (csv.Read())
             {
-
                 if (firstRow) 
                 {
                     firstRow = false; // Пропускаем первую строку, которая содержит заголовки
                     continue;
                 }
-                
-                // Определяем, какая это секция 
+                // Определяем тип данных
                 if (csv.Parser.Count == 7)
                 {
-                    Console.WriteLine("\nЧитаем операцию...");
                     try{
-                        operationFacade.AddOperation(csv.GetField<Guid>(0), csv.GetField<string>(1).ToLower() == "true",
+                        operationFacade.AddOperation(csv.GetField<Guid>(0), csv.GetField<string>(1)?.ToLower() == "true",
                         csv.GetField<Guid>(2), csv.GetField<double>(3), csv.GetField<DateTime>(4), 
-                        csv.GetField<string>(5), csv.GetField<Guid>(6));
-                        Console.WriteLine("Операция успешно добавлена");
+                        csv.GetField<string>(5) ?? "", csv.GetField<Guid>(6));
                     } catch (Exception e){
                         Console.WriteLine("Не удалось добавить операцию: " + e.Message);
                     }
@@ -44,18 +39,24 @@ public class CsvDataImporter : DataImporter{
                 {
                     if (Double.TryParse(csv.GetField(2), out _))
                     {
-                        Console.WriteLine("\nЧитаем аккаунт...");
                         try{
-                            accountFacade.AddBankAccount(csv.GetField<Guid>(0), csv.GetField<string>(1), csv.GetField<double>(2));
-                            Console.WriteLine("Аккаунт успешно добавлен");
+                            var name = csv.GetField<string>(1);
+                            if (string.IsNullOrEmpty(name))
+                            {
+                                throw new ArgumentException("Имя аккаунта не может быть null или пустым.");
+                            }
+                            accountFacade.AddBankAccount(csv.GetField<Guid>(0), name, csv.GetField<double>(2));
                         } catch (Exception e){
                             Console.WriteLine("Не удалось добавить аккаунт: " + e.Message);
                         }    
                     } else { 
-                        Console.WriteLine("\nЧитаем категорию...");
                         try{
-                            categoryFacade.AddCategory(csv.GetField<Guid>(0), csv.GetField<string>(1).ToLower() == "true", csv.GetField<string>(2));
-                            Console.WriteLine("Категория успешно добавлена");
+                            var name = csv.GetField<string>(2);
+                            if (string.IsNullOrEmpty(name))
+                            {
+                                throw new ArgumentException("Название категории не может быть null или пустым.");
+                            }
+                            categoryFacade.AddCategory(csv.GetField<Guid>(0), csv.GetField<string>(1)?.ToLower() == "true", name);
                         } catch (Exception e) {
                             Console.WriteLine("Не удалось добавить категорию: " + e.Message);
                         }

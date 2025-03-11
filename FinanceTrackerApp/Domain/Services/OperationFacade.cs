@@ -28,10 +28,12 @@ public class OperationFacade{
             operation = _financeFactory.CreateOperation(guid_id, type, bankAccountId, amount,  DateTime.Now, description, categoryId);
             _bankAccountFacade.UpdateAccountBalance(bankAccountId, type, amount);
             _operations.Add(operation);
-            Console.WriteLine("Operation: money " + (type? "add" : "withdraw") + ", amout = " + amount + ", balance = " + account.Balance);
+            Console.WriteLine("-- Операция: " + (type? "Пополнение" : "Снятие") + ", Сумма = " + amount + ", Текущий баланс = " + account.Balance);
             return operation;
         } catch (Exception e) {
-            Console.WriteLine("operation failed: " + e.Message);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Операция отклонена: " + e.Message);
+            Console.ResetColor();
             return null;
         }
     }

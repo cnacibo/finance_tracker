@@ -1,116 +1,107 @@
 {
   "accounts": [
     {
-      "Id": "a5b8c995-5cfc-486c-bb57-69dbf1be8a6e",
+      "Id": "15b15a9e-65ab-4a46-8a08-9a6e9787ca8f",
       "Name": "Дополнительный счет",
       "Balance": 7900.0
     },
     {
-      "Id": "b3a7c4d2-75fd-4c98-bb9f-3cfc4bda1f5e",
+      "Id": "1b3d5f67-a8c2-4c3b-9e4a-731c6b6d8df1",
       "Name": "Основной счет",
-      "Balance": 15000.0
+      "Balance": 25000.0
     },
     {
-      "Id": "c4d7f8a1-9ebf-45c1-8395-dc0f8d43a37c",
-      "Name": "Накопительный счет",
-      "Balance": 50000.0
+      "Id": "3c5a6e98-4f1d-4372-94b3-6b29d14f8c5d",
+      "Name": "Сберегательный счет",
+      "Balance": 100000.0
     }
   ],
   "categories": [
     {
-      "Id": "282ae62f-a275-4d41-bb17-fbac1c08d4a3",
+      "Id": "74c8d823-e835-4361-9385-fed6a7994274",
       "Type": false,
       "Name": "Продукты"
     },
     {
-      "Id": "77ea24ee-8d74-418a-9910-bbeb7ff91033",
+      "Id": "4393c8ec-710a-4a20-aa67-dd8a5d65fd7b",
       "Type": true,
       "Name": "Работа"
     },
     {
-      "Id": "ea44c18a-562d-4f2d-8435-4d1e718b72e0",
+      "Id": "cc117b19-743e-4e46-b1c2-c3e173197cc8",
       "Type": false,
       "Name": "Дорогие покупки"
     },
     {
-      "Id": "f99d7e8c-3f87-4a7c-a8de-89b7c31295b2",
-      "Type": false,
-      "Name": "Транспорт"
+      "Id": "b725f6e5-f1db-4e90-bf2c-2f9a64db9b3c",
+      "Type": true,
+      "Name": "Инвестиции"
     },
     {
-      "Id": "aad94f11-6f1c-4428-8fa9-8c46b0d96453",
+      "Id": "d182beef-3d2a-4c97-b765-1e5db9c37904",
       "Type": false,
       "Name": "Развлечения"
     },
     {
-      "Id": "b66f5b4e-8a62-41f4-8cd9-2e5d07998fcd",
-      "Type": true,
-      "Name": "Кэшбэк"
+      "Id": "e1d4f89b-8bde-4c72-82e7-267a6b8e732a",
+      "Type": false,
+      "Name": "Коммунальные платежи"
     }
   ],
   "operations": [
     {
-      "Id": "6c5e45fe-0662-4782-aa59-5e5d90191f68",
+      "Id": "fe4528bb-d5c9-4693-81e0-a67f4147fc0e",
       "Type": true,
-      "BankAccountId": "a5b8c995-5cfc-486c-bb57-69dbf1be8a6e",
+      "BankAccountId": "15b15a9e-65ab-4a46-8a08-9a6e9787ca8f",
       "Amount": 10000.0,
-      "Date": "2025-03-10T17:05:16.714493+03:00",
+      "Date": "2025-03-12T00:30:46.011891+03:00",
       "Description": "Зарплата",
-      "CategoryId": "77ea24ee-8d74-418a-9910-bbeb7ff91033"
+      "CategoryId": "4393c8ec-710a-4a20-aa67-dd8a5d65fd7b"
     },
     {
-      "Id": "c96cac1b-4795-4ba3-aa97-35cc053ef854",
+      "Id": "38b84c40-a31e-4e3a-beab-cd8e4bae576c",
       "Type": false,
-      "BankAccountId": "a5b8c995-5cfc-486c-bb57-69dbf1be8a6e",
+      "BankAccountId": "15b15a9e-65ab-4a46-8a08-9a6e9787ca8f",
       "Amount": 150.0,
-      "Date": "2025-03-10T17:05:16.731995+03:00",
+      "Date": "2025-03-12T00:30:46.027852+03:00",
       "Description": "Покупка еды",
-      "CategoryId": "282ae62f-a275-4d41-bb17-fbac1c08d4a3"
+      "CategoryId": "74c8d823-e835-4361-9385-fed6a7994274"
     },
     {
-      "Id": "2ef3a9b1-e86e-438d-83f3-5408be9d1354",
+      "Id": "9797df18-8557-475e-92e0-771eb0db521e",
       "Type": false,
-      "BankAccountId": "a5b8c995-5cfc-486c-bb57-69dbf1be8a6e",
+      "BankAccountId": "15b15a9e-65ab-4a46-8a08-9a6e9787ca8f",
       "Amount": 2000.0,
-      "Date": "2025-03-10T17:05:16.732064+03:00",
+      "Date": "2025-03-12T00:30:46.027915+03:00",
       "Description": "Покупка телефона",
-      "CategoryId": "ea44c18a-562d-4f2d-8435-4d1e718b72e0"
+      "CategoryId": "cc117b19-743e-4e46-b1c2-c3e173197cc8"
     },
     {
-      "Id": "5de45af7-88a6-4b18-91cb-6c3b92a41f45",
+      "Id": "7a29f1ad-528b-4b96-8c71-6d57b9c882db",
       "Type": false,
-      "BankAccountId": "b3a7c4d2-75fd-4c98-bb9f-3cfc4bda1f5e",
-      "Amount": 50.0,
-      "Date": "2025-03-10T17:10:00.000000+03:00",
-      "Description": "Поездка на автобусе",
-      "CategoryId": "f99d7e8c-3f87-4a7c-a8de-89b7c31295b2"
-    },
-    {
-      "Id": "9f6bfa47-61b4-45e4-9c7e-02f6e1a5b7f8",
-      "Type": false,
-      "BankAccountId": "b3a7c4d2-75fd-4c98-bb9f-3cfc4bda1f5e",
-      "Amount": 1200.0,
-      "Date": "2025-03-10T17:15:00.000000+03:00",
-      "Description": "Билет в кино",
-      "CategoryId": "aad94f11-6f1c-4428-8fa9-8c46b0d96453"
-    },
-    {
-      "Id": "7e2df446-04a4-4e4d-9286-85bb1b80ef32",
-      "Type": true,
-      "BankAccountId": "c4d7f8a1-9ebf-45c1-8395-dc0f8d43a37c",
+      "BankAccountId": "1b3d5f67-a8c2-4c3b-9e4a-731c6b6d8df1",
       "Amount": 500.0,
-      "Date": "2025-03-10T17:20:00.000000+03:00",
-      "Description": "Кэшбэк от банка",
-      "CategoryId": "b66f5b4e-8a62-41f4-8cd9-2e5d07998fcd"
+      "Date": "2025-03-11T14:00:00+03:00",
+      "Description": "Поход в кино",
+      "CategoryId": "d182beef-3d2a-4c97-b765-1e5db9c37904"
     },
     {
-      "Id": "45ac98c1-5dbf-4df6-bdd6-58b1d1a98725",
+      "Id": "f41649b2-1d23-4c82-b8f1-9de1f69b93c2",
+      "Type": true,
+      "BankAccountId": "3c5a6e98-4f1d-4372-94b3-6b29d14f8c5d",
+      "Amount": 15000.0,
+      "Date": "2025-03-11T15:10:30+03:00",
+      "Description": "Доход от инвестиций",
+      "CategoryId": "b725f6e5-f1db-4e90-bf2c-2f9a64db9b3c"
+    },
+    {
+      "Id": "8f943a5c-dc4d-49f4-8f1b-b1e72573b79a",
       "Type": false,
-      "BankAccountId": "c4d7f8a1-9ebf-45c1-8395-dc0f8d43a37c",
+      "BankAccountId": "1b3d5f67-a8c2-4c3b-9e4a-731c6b6d8df1",
       "Amount": 3000.0,
-      "Date": "2025-03-10T17:25:00.000000+03:00",
-      "Description": "Покупка ноутбука",
-      "CategoryId": "ea44c18a-562d-4f2d-8435-4d1e718b72e0"
+      "Date": "2025-03-11T16:45:00+03:00",
+      "Description": "Оплата коммунальных услуг",
+      "CategoryId": "e1d4f89b-8bde-4c72-82e7-267a6b8e732a"
     }
   ]
 }

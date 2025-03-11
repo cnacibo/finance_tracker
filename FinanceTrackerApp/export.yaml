@@ -3,7 +3,7 @@ accounts:
   name: Основной счет
   balance: 25000
 - id: 3c5a6e98-4f1d-4372-94b3-6b29d14f8c5d
-  name: Сбережения
+  name: Сберегательный счет
   balance: 100000
 categories:
 - id: d182beef-3d2a-4c97-b765-1e5db9c37904

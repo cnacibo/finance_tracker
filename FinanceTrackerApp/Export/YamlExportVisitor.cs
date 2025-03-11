@@ -6,7 +6,7 @@ using YamlDotNet.Serialization.NamingConventions;
 using System.IO;
 
 public class YamlExportVisitor : IExportVisitor{
-    public void Visit(string fileName, BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
+    public void Visit(BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
         var serializer = new SerializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance) // Указываем стиль именования
                 .Build();
@@ -17,6 +17,6 @@ public class YamlExportVisitor : IExportVisitor{
                 categories = categoryFacade.GetCategories(),
                 operations = operationFacade.GetOperations()
             };
-        File.WriteAllText(fileName, serializer.Serialize(data));
+        File.WriteAllText("export.yaml", serializer.Serialize(data));
     }
 }

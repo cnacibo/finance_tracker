@@ -7,7 +7,7 @@ using System.IO;
 using CsvHelper.Configuration;
 
 public class CsvExportVisitor : IExportVisitor{
-    public void Visit(string fileName, BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
+    public void Visit(BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
         List<BankAccount> accounts = accountFacade.GetAccounts();
         List<Category> categories = categoryFacade.GetCategories();
         List<Operation> operations = operationFacade.GetOperations();
@@ -34,7 +34,7 @@ public class CsvExportVisitor : IExportVisitor{
             foreach (var operation in operations)
             {
                 csv.WriteField(operation.Id);
-                csv.WriteField(operation.Type); // Переводим булевое значение в текст
+                csv.WriteField(operation.Type ? "true" : "false"); // Переводим булевое значение в текст
                 csv.WriteField(operation.BankAccountId);
                 csv.WriteField(operation.Amount.ToString("F2")); // Форматируем сумму
                 csv.WriteField(operation.Date.ToString("yyyy-MM-dd HH:mm:ss")); // Форматируем дату
@@ -74,7 +74,7 @@ public class CsvExportVisitor : IExportVisitor{
             foreach (var category in categories)
             {
                 csv.WriteField(category.Id);
-                csv.WriteField(category.Type ? "Income" : "Expense");
+                csv.WriteField(category.Type ? "true" : "false");
                 csv.WriteField(category.Name);
                 csv.NextRecord();
             }       

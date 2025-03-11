@@ -5,11 +5,11 @@ using System.Globalization;
 using System.IO;
 
 public class JsonExportVisitor : IExportVisitor{
-    public void Visit(string fileName, BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
+    public void Visit(BankAccountFacade accountFacade, CategoryFacade categoryFacade, OperationFacade operationFacade){
         List<BankAccount> accounts = accountFacade.GetAccounts();
         List<Category> categories = categoryFacade.GetCategories();
         List<Operation> operations = operationFacade.GetOperations();
 
-        File.WriteAllText(fileName, JsonConvert.SerializeObject(new { accounts, categories, operations }, Formatting.Indented));
+        File.WriteAllText("export.json", JsonConvert.SerializeObject(new { accounts, categories, operations }, Formatting.Indented));
     }
 }
