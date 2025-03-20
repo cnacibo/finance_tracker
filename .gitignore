@@ -1,3 +1,5 @@
 FinanceTrackerApp/bin
 FinanceTrackerApp/obj
 .DS_Store
+FinanceTrackerApp.Tests/obj
+FinanceTrackerApp.Tests/bin
